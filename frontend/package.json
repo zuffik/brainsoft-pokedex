@@ -5,7 +5,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "cd .. && husky install"
   },
   "dependencies": {
     "carbon-components": "^10.52.0",
@@ -20,6 +21,14 @@
     "@types/react": "17.0.38",
     "eslint": "8.8.0",
     "eslint-config-next": "12.0.10",
+    "husky": "7.0.4",
+    "lint-staged": "12.3.2",
+    "prettier": "2.5.1",
     "typescript": "4.5.5"
+  },
+  "lint-staged": {
+    "{pages,styles,components}/**/*.{js,ts,jsx,tsx,scss,css,sass}": [
+      "./node_modules/.bin/prettier --write"
+    ]
   }
 }
