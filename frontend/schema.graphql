@@ -5,6 +5,10 @@ schema {
 
 directive @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITION | INTERFACE | OBJECT
 
+directive @client on FIELD
+
+directive @export(as: String!) on FIELD
+
 type Attack {
   damage: Int!
   name: String!
@@ -69,6 +73,16 @@ input PokemonFilterInput {
   type: String
 }
 
+type PokemonFilterType {
+  isFavorite: Boolean
+  type: String
+}
+
+type PokemonQueries {
+  all: PokemonsQueryType!
+  favourites: PokemonsQueryType!
+}
+
 input PokemonsQueryInput {
   filter: PokemonFilterInput
   limit: Int = 10
@@ -76,9 +90,17 @@ input PokemonsQueryInput {
   search: String
 }
 
+type PokemonsQueryType {
+  filter: PokemonFilterType
+  limit: Int
+  offset: Int
+  search: String
+}
+
 type Query {
   pokemonById(id: ID!): Pokemon
   pokemonByName(name: String!): Pokemon
+  pokemonQueries: PokemonQueries!
   pokemonTypes: [String!]!
   pokemons(query: PokemonsQueryInput!): PokemonConnection!
 }

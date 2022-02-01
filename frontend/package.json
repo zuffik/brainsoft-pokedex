@@ -7,14 +7,15 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "cd .. && husky install",
-    "app:gql-codegen": "cross-env DOTENV_CONFIG_PATH=\"./.env\" graphql-codegen --require dotenv/config --config codegen.yml && ./node_modules/.bin/prettier --write src/graphql/schema.ts",
+    "app:gql-codegen": "cross-env DOTENV_CONFIG_PATH=\\\"./.env\\\" graphql-codegen --require dotenv/config --config codegen.yml && ./node_modules/.bin/prettier --write src/graphql/Schema.ts",
     "app:env-codegen": "dotenv-types-generator"
   },
   "dependencies": {
     "@apollo/client": "3.5.8",
-    "carbon-components": "^10.52.0",
-    "carbon-components-react": "^7.52.0",
-    "carbon-icons": "^7.0.7",
+    "carbon-components": "10.52.0",
+    "carbon-components-react": "7.52.0",
+    "carbon-icons": "7.0.7",
+    "classnames": "2.3.1",
     "graphql": "16.3.0",
     "next": "12.0.10",
     "react": "17.0.2",
@@ -27,6 +28,8 @@
     "@graphql-codegen/schema-ast": "2.4.1",
     "@graphql-codegen/typescript-operations": "2.2.3",
     "@graphql-codegen/typescript-react-apollo": "3.2.4",
+    "@types/carbon-components": "10.27.1",
+    "@types/carbon-components-react": "7.49.0",
     "@types/node": "17.0.13",
     "@types/react": "17.0.38",
     "cross-env": "7.0.3",
@@ -39,7 +42,7 @@
     "typescript": "4.5.5"
   },
   "lint-staged": {
-    "{pages,styles,components}/**/*.{js,ts,jsx,tsx,scss,css,sass}": [
+    "{pages,styles,src}/**/*.{js,ts,jsx,tsx,scss,css,sass}": [
       "./node_modules/.bin/prettier --write"
     ]
   }

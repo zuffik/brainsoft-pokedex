@@ -1,3 +1,6 @@
+@import '../../node_modules/carbon-components/css/carbon-components.min.css';
+@import '../../node_modules/carbon-components/scss/globals/scss/vars';
+
 html,
 body {
   padding: 0;
@@ -13,4 +16,8 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+body {
+  padding: $spacing-2xl;
 }

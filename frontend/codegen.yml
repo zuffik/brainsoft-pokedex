@@ -1,8 +1,10 @@
 overwrite: true
+schema: ./schema-local.graphql
+
 documents:
-  - 'components/**/*.graphql'
+  - 'src/**/*.graphql'
 generates:
-  src/graphql/schema.ts:
+  src/graphql/Schema.ts:
     schema: '${GRAPHQL_URL}'
     plugins:
       - 'typescript'

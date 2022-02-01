@@ -1,0 +1,23 @@
+directive @client on FIELD
+directive @export(as: String!) on FIELD
+
+type PokemonFilterType {
+  isFavorite: Boolean
+  type: String
+}
+
+type PokemonsQueryType {
+  filter: PokemonFilterType
+  limit: Int
+  offset: Int
+  search: String
+}
+
+type PokemonQueries {
+  all: PokemonsQueryType!
+  favourites: PokemonsQueryType!
+}
+
+extend type Query {
+  pokemonQueries: PokemonQueries!
+}

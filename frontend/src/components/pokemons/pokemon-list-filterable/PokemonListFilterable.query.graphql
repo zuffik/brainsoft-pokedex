@@ -1,0 +1,10 @@
+query PokemonListFilterable($query: PokemonsQueryInput!) {
+  pokemons(query: $query) {
+    limit
+    offset
+    count
+    edges {
+      ...PokemonListItem
+    }
+  }
+}
