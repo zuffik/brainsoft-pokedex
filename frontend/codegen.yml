@@ -1,0 +1,17 @@
+overwrite: true
+documents:
+  - 'components/**/*.graphql'
+generates:
+  src/graphql/schema.ts:
+    schema: '${GRAPHQL_URL}'
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+      - 'fragment-matcher'
+  ./schema.graphql:
+    schema: '${GRAPHQL_URL}'
+    plugins:
+      - 'schema-ast'
+    config:
+      includeDirectives: true
