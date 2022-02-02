@@ -4,7 +4,7 @@ import { pokemonsQueriesFields } from './state/PokemonQueries';
 
 const createApolloClient = () =>
   new ApolloClient({
-    uri: process.env.GRAPHQL_URL,
+    uri: process.env.REACT_APP_GRAPHQL_URL,
     cache: new InMemoryCache({
       ...possibleTypes,
       typePolicies: {

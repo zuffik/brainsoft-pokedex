@@ -1,5 +1,5 @@
 import React from 'react';
-import { PokemonFilterInput, PokemonListItemFragment } from '../../../graphql';
+import { PokemonListItemFragment } from '../../../graphql';
 
 export interface PokemonListProps {
   items: PokemonListItemFragment[];

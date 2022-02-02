@@ -1,9 +1,8 @@
 import React from 'react';
 import { PokemonListFilter } from '../pokemon-list-filter/PokemonListFilter';
-import { PokemonList, PokemonListProps } from '../pokemon-list/PokemonList';
+import { PokemonList } from '../pokemon-list/PokemonList';
 import {
   PokemonListFilterableQuery,
-  PokemonListFilterFragment,
   PokemonListItemFragment,
   PokemonQueries,
   usePokemonListFilterableQuery,
@@ -30,16 +29,14 @@ PokemonListFilterable.displayName = 'PokemonListFilterable';
 
 export interface PokemonListFilterableConnectedProps {
   id: keyof Omit<PokemonQueries, '__typename'>;
-  prefetchedData?: PokemonListFilterableQuery;
 }
 
 export const PokemonListFilterableConnected: React.FC<
   PokemonListFilterableConnectedProps
 > = (props) => {
   const query = useReactiveVar(pokemonsQueries)[props.id];
-  const { data = props.prefetchedData } = usePokemonListFilterableQuery({
+  const { data } = usePokemonListFilterableQuery({
     variables: { query },
-    fetchPolicy: 'network-only',
   });
   return <PokemonListFilterable items={data?.pokemons?.edges || []} />;
 };

@@ -1,5 +1,5 @@
-import { FieldPolicy, makeVar, useReactiveVar } from '@apollo/client';
-import { PokemonQueries, PokemonsQueryType } from '../Schema';
+import { FieldPolicy, makeVar } from '@apollo/client';
+import { PokemonQueries } from '../Schema';
 
 export const pokemonsQueries = makeVar<PokemonQueries>({
   all: {

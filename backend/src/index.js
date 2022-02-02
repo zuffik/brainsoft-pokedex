@@ -12,6 +12,10 @@ const typeDefs = fs.readFileSync(`${__dirname}/schema.graphql`, 'utf-8');
 let favorites = new Map();
 
 const app = express();
+app.use((req, res, next) => {
+  console.log(req.url);
+  return next();
+})
 app.get('/sounds/:id', (req, res) => res.sendFile(`${__dirname}/sounds/${req.params.id}.mp3`));
 
 const resolvers = {
