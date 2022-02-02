@@ -1,5 +1,5 @@
 import React from 'react';
-import { Column, ContentSwitcher, Grid, Row } from 'carbon-components-react';
+import { Column, Grid, Row } from 'carbon-components-react';
 import { PokemonListFilterSearch } from '../pokemon-list-filter-search/PokemonListFilterSearch';
 import { PokemonListFilterType } from '../pokemon-list-filter-type/PokemonListFilterType';
 import { GridDefaultProps } from 'carbon-components-react/lib/components/Grid/Grid';
