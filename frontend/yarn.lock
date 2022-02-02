@@ -1088,9 +1088,9 @@
   resolved "https://registry.yarnpkg.com/@carbon/icon-helpers/-/icon-helpers-10.26.0.tgz#fe8277836e7b758ae48c93fbab8aab444b2f3b70"
   integrity sha512-zrWRGn40whcKddYlj9MFsPMWwM5sLK2yfYpUbqKv2QFxlMyT60d/4Jd+yS81JVSQ39JO3vvlfb+Vl93O5Zl+dw==
 
-"@carbon/icons-react@^10.45.0":
+"@carbon/icons-react@10.45.0", "@carbon/icons-react@^10.45.0":
   version "10.45.0"
-  resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-10.45.0.tgz#662b3667c74193fd51722e99ee00df72a3b9ac99"
+  resolved "https://registry.npmjs.org/@carbon/icons-react/-/icons-react-10.45.0.tgz#662b3667c74193fd51722e99ee00df72a3b9ac99"
   integrity sha512-bQfAxq19VnNkvaqYvBtF1H1WrINQK0JCA0wR0t8YLDPuC+WmlOPAyJIkAGlYukFJuHVP4p+CpSWIO6+/8PXsqw==
   dependencies:
     "@carbon/icon-helpers" "^10.26.0"
@@ -2190,6 +2190,11 @@
   version "10.27.1"
   resolved "https://registry.yarnpkg.com/@types/carbon-components/-/carbon-components-10.27.1.tgz#02304512c7b39b552e970c1b7b31c6259f46fb1a"
   integrity sha512-AsdKRC+pzSfuYzjKTjl3l744cIfL8Y6YhWMd69Vk4EJyTwWvf8fS4yJQng86FiW7W4Jo4y3LCDQeVo6/qbLKsw==
+
+"@types/carbon__icons-react@10.31.2":
+  version "10.31.2"
+  resolved "https://registry.npmjs.org/@types/carbon__icons-react/-/carbon__icons-react-10.31.2.tgz#3aad2a752f82ccc8a0151d8053edcebc0dc92765"
+  integrity sha512-TFZhgEZVCTbB0AsQfohcMLC1dblJxGIDjSJeleiie5z7bc1O6qfLAjomh0bg54EgkuTNK2UIMJ2QPL1qPQZJyQ==
 
 "@types/connect-history-api-fallback@^1.3.5":
   version "1.3.5"
@@ -3567,7 +3572,7 @@ carbon-components@10.52.0:
 
 carbon-icons@7.0.7:
   version "7.0.7"
-  resolved "https://registry.yarnpkg.com/carbon-icons/-/carbon-icons-7.0.7.tgz#ebafe3e9fa25df973796a8eca06d8a7c501cc610"
+  resolved "https://registry.npmjs.org/carbon-icons/-/carbon-icons-7.0.7.tgz#ebafe3e9fa25df973796a8eca06d8a7c501cc610"
   integrity sha512-3vgkdXJRgCViCrH3fLUdyAXo0I8wmohO6QETv7vWFx6yc7s+SirWFBSFL38zUx4MHtR8iTxIlLEzkeU6FlFtXg==
 
 case-sensitive-paths-webpack-plugin@^2.4.0:

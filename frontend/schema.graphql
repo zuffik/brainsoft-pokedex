@@ -78,11 +78,6 @@ type PokemonFilterType {
   type: String
 }
 
-type PokemonQueries {
-  all: PokemonsQueryType!
-  favourites: PokemonsQueryType!
-}
-
 input PokemonsQueryInput {
   filter: PokemonFilterInput
   limit: Int = 10
@@ -100,7 +95,7 @@ type PokemonsQueryType {
 type Query {
   pokemonById(id: ID!): Pokemon
   pokemonByName(name: String!): Pokemon
-  pokemonQueries: PokemonQueries!
+  pokemonQuery: PokemonsQueryType!
   pokemonTypes: [String!]!
   pokemons(query: PokemonsQueryInput!): PokemonConnection!
 }

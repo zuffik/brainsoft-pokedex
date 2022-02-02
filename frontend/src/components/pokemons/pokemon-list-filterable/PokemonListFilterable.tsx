@@ -2,13 +2,11 @@ import React from 'react';
 import { PokemonListFilter } from '../pokemon-list-filter/PokemonListFilter';
 import { PokemonList } from '../pokemon-list/PokemonList';
 import {
-  PokemonListFilterableQuery,
   PokemonListItemFragment,
-  PokemonQueries,
   usePokemonListFilterableQuery,
 } from '../../../graphql';
 import { useReactiveVar } from '@apollo/client';
-import { pokemonsQueries } from '../../../graphql/state/PokemonQueries';
+import { pokemonQuery } from '../../../graphql/state/PokemonQueries';
 
 export interface PokemonListFilterableProps {
   items: PokemonListItemFragment[];
@@ -27,14 +25,12 @@ export const PokemonListFilterable = React.memo<PokemonListFilterableProps>(
 
 PokemonListFilterable.displayName = 'PokemonListFilterable';
 
-export interface PokemonListFilterableConnectedProps {
-  id: keyof Omit<PokemonQueries, '__typename'>;
-}
+export interface PokemonListFilterableConnectedProps {}
 
 export const PokemonListFilterableConnected: React.FC<
   PokemonListFilterableConnectedProps
 > = (props) => {
-  const query = useReactiveVar(pokemonsQueries)[props.id];
+  const query = useReactiveVar(pokemonQuery);
   const { data } = usePokemonListFilterableQuery({
     variables: { query },
   });

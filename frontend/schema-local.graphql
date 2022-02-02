@@ -13,11 +13,6 @@ type PokemonsQueryType {
   search: String
 }
 
-type PokemonQueries {
-  all: PokemonsQueryType!
-  favourites: PokemonsQueryType!
-}
-
 extend type Query {
-  pokemonQueries: PokemonQueries!
+  pokemonQuery: PokemonsQueryType!
 }

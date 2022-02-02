@@ -1,22 +1,15 @@
 import { FieldPolicy, makeVar } from '@apollo/client';
-import { PokemonQueries } from '../Schema';
+import { PokemonsQueryType } from '../Schema';
 
-export const pokemonsQueries = makeVar<PokemonQueries>({
-  all: {
-    limit: 10,
-    offset: 0,
-  },
-  favourites: {
-    limit: 10,
-    offset: 0,
-    filter: { isFavorite: true },
-  },
+export const pokemonQuery = makeVar<PokemonsQueryType>({
+  limit: 10,
+  offset: 0,
 });
 
-const pokemonQueriesFieldPolicy: FieldPolicy<PokemonQueries> = {
-  read: () => pokemonsQueries(),
+const pokemonQueryFieldPolicy: FieldPolicy<PokemonsQueryType> = {
+  read: () => pokemonQuery(),
 };
 
-export const pokemonsQueriesFields = {
-  pokemonQueries: pokemonQueriesFieldPolicy,
+export const pokemonsQueryFields = {
+  pokemonQuery: pokemonQueryFieldPolicy,
 };

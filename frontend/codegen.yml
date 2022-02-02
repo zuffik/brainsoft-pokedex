@@ -5,14 +5,14 @@ documents:
   - 'src/**/*.graphql'
 generates:
   src/graphql/Schema.ts:
-    schema: '${GRAPHQL_URL}'
+    schema: '${REACT_APP_GRAPHQL_URL}'
     plugins:
       - 'typescript'
       - 'typescript-operations'
       - 'typescript-react-apollo'
       - 'fragment-matcher'
   ./schema.graphql:
-    schema: '${GRAPHQL_URL}'
+    schema: '${REACT_APP_GRAPHQL_URL}'
     plugins:
       - 'schema-ast'
     config:

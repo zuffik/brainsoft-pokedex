@@ -108,12 +108,6 @@ export type PokemonFilterType = {
   type?: Maybe<Scalars['String']>;
 };
 
-export type PokemonQueries = {
-  __typename?: 'PokemonQueries';
-  all: PokemonsQueryType;
-  favourites: PokemonsQueryType;
-};
-
 export type PokemonsQueryInput = {
   filter?: InputMaybe<PokemonFilterInput>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -133,7 +127,7 @@ export type Query = {
   __typename?: 'Query';
   pokemonById?: Maybe<Pokemon>;
   pokemonByName?: Maybe<Pokemon>;
-  pokemonQueries: PokemonQueries;
+  pokemonQuery: PokemonsQueryType;
   pokemonTypes: Array<Scalars['String']>;
   pokemons: PokemonConnection;
 };

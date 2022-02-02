@@ -1,0 +1,14 @@
+@import '~carbon-components/scss/globals/scss/vars';
+
+.root {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.firstRow {
+  margin-bottom: $spacing-05;
+}
+
+.lastCol {
+  text-align: right;
+}
