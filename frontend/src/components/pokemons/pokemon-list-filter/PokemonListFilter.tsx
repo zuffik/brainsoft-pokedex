@@ -1,6 +1,6 @@
 import React from 'react';
 import { Column, Grid, Row } from 'carbon-components-react';
-import { PokemonListFilterSearch } from '../pokemon-list-filter-search/PokemonListFilterSearch';
+import { PokemonListFilterSearchConnected } from '../pokemon-list-filter-search/PokemonListFilterSearch';
 import { PokemonListFilterTypeConnected } from '../pokemon-list-filter-type/PokemonListFilterType';
 import { GridDefaultProps } from 'carbon-components-react/lib/components/Grid/Grid';
 import classNames from 'classnames';
@@ -26,7 +26,7 @@ export const PokemonListFilter = React.memo<PokemonListFilterProps>((props) => {
         </Row>
         <Row>
           <Column sm={8} md={4} lg={4}>
-            <PokemonListFilterSearch />
+            <PokemonListFilterSearchConnected />
           </Column>
           <Column sm={4} md={4} lg={6}>
             <PokemonListFilterTypeConnected />
