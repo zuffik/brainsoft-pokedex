@@ -1,7 +1,7 @@
 import React from 'react';
 import { Column, Grid, Row } from 'carbon-components-react';
 import { PokemonListFilterSearch } from '../pokemon-list-filter-search/PokemonListFilterSearch';
-import { PokemonListFilterType } from '../pokemon-list-filter-type/PokemonListFilterType';
+import { PokemonListFilterTypeConnected } from '../pokemon-list-filter-type/PokemonListFilterType';
 import { GridDefaultProps } from 'carbon-components-react/lib/components/Grid/Grid';
 import classNames from 'classnames';
 import styles from './PokemonListFilter.module.scss';
@@ -29,7 +29,7 @@ export const PokemonListFilter = React.memo<PokemonListFilterProps>((props) => {
             <PokemonListFilterSearch />
           </Column>
           <Column sm={4} md={4} lg={6}>
-            <PokemonListFilterType />
+            <PokemonListFilterTypeConnected />
           </Column>
           <Column sm={2} md={2} lg={2} className={styles.lastCol}>
             <PokemonListFilterViewModeConnected />

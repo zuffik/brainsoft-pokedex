@@ -2,7 +2,7 @@ import { FieldPolicy, makeVar } from '@apollo/client';
 import { PokemonsQueryType } from '../Schema';
 
 export const pokemonQuery = makeVar<PokemonsQueryType>({
-  limit: 10,
+  limit: 12,
   offset: 0,
 });
 

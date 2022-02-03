@@ -154,6 +154,15 @@ export type Root = {
   query: Query;
 };
 
+export type PokemonListFilterTypesQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type PokemonListFilterTypesQuery = {
+  __typename?: 'Query';
+  pokemonTypes: Array<string>;
+};
+
 export type PokemonListFilterFragment = {
   __typename?: 'PokemonsQueryType';
   limit?: number | null;
@@ -214,6 +223,61 @@ export const PokemonListItemFragmentDoc = gql`
     types
   }
 `;
+export const PokemonListFilterTypesDocument = gql`
+  query PokemonListFilterTypes {
+    pokemonTypes
+  }
+`;
+
+/**
+ * __usePokemonListFilterTypesQuery__
+ *
+ * To run a query within a React component, call `usePokemonListFilterTypesQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePokemonListFilterTypesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePokemonListFilterTypesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePokemonListFilterTypesQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    PokemonListFilterTypesQuery,
+    PokemonListFilterTypesQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    PokemonListFilterTypesQuery,
+    PokemonListFilterTypesQueryVariables
+  >(PokemonListFilterTypesDocument, options);
+}
+export function usePokemonListFilterTypesLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    PokemonListFilterTypesQuery,
+    PokemonListFilterTypesQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    PokemonListFilterTypesQuery,
+    PokemonListFilterTypesQueryVariables
+  >(PokemonListFilterTypesDocument, options);
+}
+export type PokemonListFilterTypesQueryHookResult = ReturnType<
+  typeof usePokemonListFilterTypesQuery
+>;
+export type PokemonListFilterTypesLazyQueryHookResult = ReturnType<
+  typeof usePokemonListFilterTypesLazyQuery
+>;
+export type PokemonListFilterTypesQueryResult = Apollo.QueryResult<
+  PokemonListFilterTypesQuery,
+  PokemonListFilterTypesQueryVariables
+>;
 export const PokemonListFilterableDocument = gql`
   query PokemonListFilterable($query: PokemonsQueryInput!) {
     pokemons(query: $query) {
