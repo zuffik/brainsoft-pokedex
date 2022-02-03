@@ -1,4 +1,5 @@
 @import '~carbon-components/scss/globals/scss/vars';
+@import '~carbon-components/scss/globals/scss/vendor/@carbon/layout/scss/modules/breakpoint';
 
 .root {
   padding-left: 1rem !important;
@@ -10,5 +11,7 @@
 }
 
 .lastCol {
-  text-align: right;
+  @include breakpoint-up('lg') {
+    text-align: right;
+  }
 }

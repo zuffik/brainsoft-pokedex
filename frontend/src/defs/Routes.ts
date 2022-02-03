@@ -6,7 +6,7 @@ class Route<T extends string = string> {
   public createChildRoute<C extends string = string>(
     subPath: string
   ): Route<C & T> {
-    return new Route<C & T>((this.path + '/' + subPath).replace('//', '/'));
+    return new Route<C & T>((this.path + subPath).replace(/\/\//g, '/'));
   }
 
   public generate(data?: Params<T>): string {
@@ -16,6 +16,9 @@ class Route<T extends string = string> {
 
 const root = new Route('/');
 
+const pokemonDetail = root.createChildRoute<'name'>('/:name');
+
 export const routes = {
   root,
+  pokemonDetail,
 };
