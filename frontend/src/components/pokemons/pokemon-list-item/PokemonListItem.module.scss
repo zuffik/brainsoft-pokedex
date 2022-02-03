@@ -6,7 +6,12 @@
   border: 1px solid $active-secondary;
   margin: $spacing-03;
   display: flex;
-  flex-direction: row;
+  &.list {
+    flex-direction: row;
+  }
+  &.grid {
+    flex-direction: column;
+  }
 }
 
 .info {
@@ -16,8 +21,18 @@
   width: 100%;
 }
 
+.imageLink {
+  display: block;
+  background-color: $white-0;
+  padding: $spacing-xl;
+}
+
 .image {
-  width: 200px;
+  width: $spacing-3xl * 3;
+  height: $spacing-3xl * 3;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .label {

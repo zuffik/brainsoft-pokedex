@@ -1,3 +1,13 @@
 .root {
   display: flex;
 }
+
+.list {
+  flex-direction: column;
+}
+
+.grid {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

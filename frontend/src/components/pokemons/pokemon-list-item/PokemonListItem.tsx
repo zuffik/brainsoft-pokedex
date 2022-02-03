@@ -4,18 +4,28 @@ import { PokemonListItemFragment } from '../../../graphql';
 import styles from './PokemonListItem.module.scss';
 import { routes } from '../../../defs/Routes';
 import { FavouriteButton } from '../../favourites/favourite-button/FavouriteButton';
+import classNames from 'classnames';
 
 export interface PokemonListItemProps {
   item: PokemonListItemFragment;
+  layout?: 'list' | 'grid';
 }
 
 export const PokemonListItem = React.memo<PokemonListItemProps>((props) => {
   return (
-    <div className={styles.root}>
-      <Link to={routes.pokemonDetail.generate({ name: props.item.name })}>
-        <img
-          src={props.item.image}
-          alt={props.item.name}
+    <div
+      className={classNames(styles.root, {
+        [styles.list]: props.layout === 'list',
+        [styles.grid]: props.layout === 'grid',
+      })}
+    >
+      <Link
+        to={routes.pokemonDetail.generate({ name: props.item.name })}
+        className={styles.imageLink}
+      >
+        <div
+          role="img"
+          style={{ backgroundImage: `url(${props.item.image})` }}
           className={styles.image}
         />
       </Link>
