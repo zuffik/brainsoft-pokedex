@@ -14,6 +14,10 @@ class Route<T extends string = string> {
   }
 }
 
+export type RouteParams<R> = R extends Route<infer P>
+  ? { [K in P]: string }
+  : {};
+
 const root = new Route('/');
 
 const pokemonDetail = root.createChildRoute<'name'>('/:name');

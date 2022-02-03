@@ -1,0 +1,21 @@
+fragment PokemonFull on Pokemon {
+  id
+  ...PokemonListItem
+  sound
+  maxCP
+  maxHP
+  weight {
+    minimum
+    maximum
+  }
+  height {
+    minimum
+    maximum
+  }
+  evolutions {
+    id
+    isFavorite
+    name
+    image
+  }
+}

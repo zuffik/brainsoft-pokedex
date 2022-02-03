@@ -1,30 +1,24 @@
 import React from 'react';
 import { PokemonListItemFragment, PokemonListViewType } from '../../../graphql';
+import { PokemonListItem } from '../pokemon-list-item/PokemonListItem';
 import {
-  PokemonListItem,
-  PokemonListItemProps,
-} from '../pokemon-list-item/PokemonListItem';
-import styles from './PokemonList.module.scss';
-import classNames from 'classnames';
+  PokemonListWrapper,
+  PokemonListWrapperProps,
+} from '../pokemon-list-wrapper/PokemonListWrapper';
 
 export interface PokemonListProps {
   items: PokemonListItemFragment[];
-  layout?: PokemonListItemProps['layout'];
+  layout?: PokemonListWrapperProps['layout'];
 }
 
 export const PokemonList: React.FC<PokemonListProps> =
   React.memo<PokemonListProps>((props) => {
     return (
-      <div
-        className={classNames(styles.root, {
-          [styles.list]: props.layout === PokemonListViewType.List,
-          [styles.grid]: props.layout === PokemonListViewType.Grid,
-        })}
-      >
+      <PokemonListWrapper layout={props.layout}>
         {props.items.map((item) => (
           <PokemonListItem key={item.id} item={item} layout={props.layout} />
         ))}
-      </div>
+      </PokemonListWrapper>
     );
   });
 

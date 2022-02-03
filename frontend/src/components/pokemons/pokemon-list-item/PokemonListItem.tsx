@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 import { PokemonListItemFragment, PokemonListViewType } from '../../../graphql';
 import styles from './PokemonListItem.module.scss';
 import { routes } from '../../../defs/Routes';
-import { FavouriteButtonConnected } from '../../favourites/favourite-button/FavouriteButton';
+import { FavouriteButtonConnected } from '../../favourites';
 import classNames from 'classnames';
 
+type PokemonItem = Omit<PokemonListItemFragment, '__typename' | 'types'> &
+  Partial<Pick<PokemonListItemFragment, 'types'>>;
+
 export interface PokemonListItemProps {
-  item: PokemonListItemFragment;
+  item: PokemonItem;
   layout?: PokemonListViewType;
 }
 
@@ -35,7 +38,7 @@ export const PokemonListItem = React.memo<PokemonListItemProps>((props) => {
           className={styles.description}
         >
           <span className={styles.label}>{props.item.name}</span>
-          <span>{props.item.types.join(', ')}</span>
+          <span>{props.item.types?.join(', ')}</span>
         </Link>
         <div className={styles.actions}>
           <FavouriteButtonConnected id={props.item.id} />

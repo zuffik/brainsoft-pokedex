@@ -1,0 +1,40 @@
+@import '~carbon-components/scss/globals/scss/vars';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: $spacing-xl;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto $spacing-3xl;
+}
+
+.column {
+  background-color: $field-01;
+  padding: $spacing-05;
+}
+
+.grid {
+  margin-bottom: $spacing-xl;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 100px;
+}

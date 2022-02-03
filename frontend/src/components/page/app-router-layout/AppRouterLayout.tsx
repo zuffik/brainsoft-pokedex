@@ -3,9 +3,8 @@ import { AppHeader } from '../app-header/AppHeader';
 import { Route, Routes } from 'react-router';
 import { routes } from '../../../defs/Routes';
 
-const PokemonListFilterable = React.lazy(
-  () => import('./pages/PokemonListFilterable')
-);
+const PokemonList = React.lazy(() => import('./pages/PokemonList'));
+const PokemonDetail = React.lazy(() => import('./pages/PokemonDetail'));
 
 export interface AppRouterLayoutProps {}
 
@@ -18,11 +17,19 @@ export const AppRouterLayout = React.memo<AppRouterLayoutProps>((props) => {
           path={routes.root.path}
           element={
             <React.Suspense fallback={null}>
-              <PokemonListFilterable />
+              <PokemonList />
             </React.Suspense>
           }
         />
-        <Route element={null} />
+        <Route
+          path={routes.pokemonDetail.path}
+          element={
+            <React.Suspense fallback={null}>
+              <PokemonDetail />
+            </React.Suspense>
+          }
+        />
+        <Route element={<>404</>} />
       </Routes>
     </>
   );
