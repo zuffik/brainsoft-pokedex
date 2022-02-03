@@ -37,6 +37,7 @@ export const PokemonListFilterableConnected: React.FC<
   const layout = useReactiveVar(pokemonListView);
   const { data } = usePokemonListFilterableQuery({
     variables: { query },
+    fetchPolicy: 'cache-and-network',
   });
   return (
     <PokemonListFilterable

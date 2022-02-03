@@ -6,7 +6,7 @@ import { GridDefaultProps } from 'carbon-components-react/lib/components/Grid/Gr
 import classNames from 'classnames';
 import styles from './PokemonListFilter.module.scss';
 import { PokemonListFilterViewModeConnected } from '../pokemon-list-filter-view-mode/PokemonListFilterViewMode';
-import { PokemonListFilterFavourites } from '../pokemon-list-filter-favourites/PokemonListFilterFavourites';
+import { PokemonListFilterFavouritesConnected } from '../pokemon-list-filter-favourites/PokemonListFilterFavourites';
 
 export interface PokemonListFilterProps extends GridDefaultProps {}
 
@@ -21,7 +21,7 @@ export const PokemonListFilter = React.memo<PokemonListFilterProps>((props) => {
       >
         <Row className={styles.firstRow}>
           <Column>
-            <PokemonListFilterFavourites />
+            <PokemonListFilterFavouritesConnected />
           </Column>
         </Row>
         <Row>
