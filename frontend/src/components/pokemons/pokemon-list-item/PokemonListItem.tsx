@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { PokemonListItemFragment, PokemonListViewType } from '../../../graphql';
 import styles from './PokemonListItem.module.scss';
 import { routes } from '../../../defs/Routes';
-import { FavouriteButton } from '../../favourites/favourite-button/FavouriteButton';
+import { FavouriteButtonConnected } from '../../favourites/favourite-button/FavouriteButton';
 import classNames from 'classnames';
 
 export interface PokemonListItemProps {
@@ -38,7 +38,7 @@ export const PokemonListItem = React.memo<PokemonListItemProps>((props) => {
           <span>{props.item.types.join(', ')}</span>
         </Link>
         <div className={styles.actions}>
-          <FavouriteButton />
+          <FavouriteButtonConnected id={props.item.id} />
         </div>
       </div>
     </div>

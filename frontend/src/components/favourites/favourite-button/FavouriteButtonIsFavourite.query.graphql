@@ -1,0 +1,6 @@
+query FavouriteButtonIsFavourite($id: ID!) {
+  pokemonById(id: $id) {
+    id
+    isFavorite
+  }
+}

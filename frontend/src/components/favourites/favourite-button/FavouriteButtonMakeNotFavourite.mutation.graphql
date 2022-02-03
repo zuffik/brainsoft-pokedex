@@ -1,0 +1,6 @@
+mutation FavouriteButtonMakeNotFavourite($id: ID!) {
+  unFavoritePokemon(id: $id) {
+    id
+    isFavorite
+  }
+}

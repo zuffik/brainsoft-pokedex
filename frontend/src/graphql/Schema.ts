@@ -154,6 +154,45 @@ export type Root = {
   query: Query;
 };
 
+export type FavouriteButtonIsFavouriteQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+export type FavouriteButtonIsFavouriteQuery = {
+  __typename?: 'Query';
+  pokemonById?: {
+    __typename?: 'Pokemon';
+    id: string;
+    isFavorite: boolean;
+  } | null;
+};
+
+export type FavouriteButtonMakeFavouriteMutationVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+export type FavouriteButtonMakeFavouriteMutation = {
+  __typename?: 'Mutation';
+  favoritePokemon?: {
+    __typename?: 'Pokemon';
+    id: string;
+    isFavorite: boolean;
+  } | null;
+};
+
+export type FavouriteButtonMakeNotFavouriteMutationVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+export type FavouriteButtonMakeNotFavouriteMutation = {
+  __typename?: 'Mutation';
+  unFavoritePokemon?: {
+    __typename?: 'Pokemon';
+    id: string;
+    isFavorite: boolean;
+  } | null;
+};
+
 export type PokemonListFilterTypesQueryVariables = Exact<{
   [key: string]: never;
 }>;
@@ -192,6 +231,7 @@ export type PokemonListFilterableQuery = {
       image: string;
       name: string;
       types: Array<string>;
+      isFavorite: boolean;
     }>;
   };
 };
@@ -202,6 +242,7 @@ export type PokemonListItemFragment = {
   image: string;
   name: string;
   types: Array<string>;
+  isFavorite: boolean;
 };
 
 export const PokemonListFilterFragmentDoc = gql`
@@ -221,8 +262,172 @@ export const PokemonListItemFragmentDoc = gql`
     image
     name
     types
+    isFavorite
   }
 `;
+export const FavouriteButtonIsFavouriteDocument = gql`
+  query FavouriteButtonIsFavourite($id: ID!) {
+    pokemonById(id: $id) {
+      id
+      isFavorite
+    }
+  }
+`;
+
+/**
+ * __useFavouriteButtonIsFavouriteQuery__
+ *
+ * To run a query within a React component, call `useFavouriteButtonIsFavouriteQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFavouriteButtonIsFavouriteQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFavouriteButtonIsFavouriteQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useFavouriteButtonIsFavouriteQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    FavouriteButtonIsFavouriteQuery,
+    FavouriteButtonIsFavouriteQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    FavouriteButtonIsFavouriteQuery,
+    FavouriteButtonIsFavouriteQueryVariables
+  >(FavouriteButtonIsFavouriteDocument, options);
+}
+export function useFavouriteButtonIsFavouriteLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FavouriteButtonIsFavouriteQuery,
+    FavouriteButtonIsFavouriteQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    FavouriteButtonIsFavouriteQuery,
+    FavouriteButtonIsFavouriteQueryVariables
+  >(FavouriteButtonIsFavouriteDocument, options);
+}
+export type FavouriteButtonIsFavouriteQueryHookResult = ReturnType<
+  typeof useFavouriteButtonIsFavouriteQuery
+>;
+export type FavouriteButtonIsFavouriteLazyQueryHookResult = ReturnType<
+  typeof useFavouriteButtonIsFavouriteLazyQuery
+>;
+export type FavouriteButtonIsFavouriteQueryResult = Apollo.QueryResult<
+  FavouriteButtonIsFavouriteQuery,
+  FavouriteButtonIsFavouriteQueryVariables
+>;
+export const FavouriteButtonMakeFavouriteDocument = gql`
+  mutation FavouriteButtonMakeFavourite($id: ID!) {
+    favoritePokemon(id: $id) {
+      id
+      isFavorite
+    }
+  }
+`;
+export type FavouriteButtonMakeFavouriteMutationFn = Apollo.MutationFunction<
+  FavouriteButtonMakeFavouriteMutation,
+  FavouriteButtonMakeFavouriteMutationVariables
+>;
+
+/**
+ * __useFavouriteButtonMakeFavouriteMutation__
+ *
+ * To run a mutation, you first call `useFavouriteButtonMakeFavouriteMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useFavouriteButtonMakeFavouriteMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [favouriteButtonMakeFavouriteMutation, { data, loading, error }] = useFavouriteButtonMakeFavouriteMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useFavouriteButtonMakeFavouriteMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    FavouriteButtonMakeFavouriteMutation,
+    FavouriteButtonMakeFavouriteMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    FavouriteButtonMakeFavouriteMutation,
+    FavouriteButtonMakeFavouriteMutationVariables
+  >(FavouriteButtonMakeFavouriteDocument, options);
+}
+export type FavouriteButtonMakeFavouriteMutationHookResult = ReturnType<
+  typeof useFavouriteButtonMakeFavouriteMutation
+>;
+export type FavouriteButtonMakeFavouriteMutationResult =
+  Apollo.MutationResult<FavouriteButtonMakeFavouriteMutation>;
+export type FavouriteButtonMakeFavouriteMutationOptions =
+  Apollo.BaseMutationOptions<
+    FavouriteButtonMakeFavouriteMutation,
+    FavouriteButtonMakeFavouriteMutationVariables
+  >;
+export const FavouriteButtonMakeNotFavouriteDocument = gql`
+  mutation FavouriteButtonMakeNotFavourite($id: ID!) {
+    unFavoritePokemon(id: $id) {
+      id
+      isFavorite
+    }
+  }
+`;
+export type FavouriteButtonMakeNotFavouriteMutationFn = Apollo.MutationFunction<
+  FavouriteButtonMakeNotFavouriteMutation,
+  FavouriteButtonMakeNotFavouriteMutationVariables
+>;
+
+/**
+ * __useFavouriteButtonMakeNotFavouriteMutation__
+ *
+ * To run a mutation, you first call `useFavouriteButtonMakeNotFavouriteMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useFavouriteButtonMakeNotFavouriteMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [favouriteButtonMakeNotFavouriteMutation, { data, loading, error }] = useFavouriteButtonMakeNotFavouriteMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useFavouriteButtonMakeNotFavouriteMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    FavouriteButtonMakeNotFavouriteMutation,
+    FavouriteButtonMakeNotFavouriteMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    FavouriteButtonMakeNotFavouriteMutation,
+    FavouriteButtonMakeNotFavouriteMutationVariables
+  >(FavouriteButtonMakeNotFavouriteDocument, options);
+}
+export type FavouriteButtonMakeNotFavouriteMutationHookResult = ReturnType<
+  typeof useFavouriteButtonMakeNotFavouriteMutation
+>;
+export type FavouriteButtonMakeNotFavouriteMutationResult =
+  Apollo.MutationResult<FavouriteButtonMakeNotFavouriteMutation>;
+export type FavouriteButtonMakeNotFavouriteMutationOptions =
+  Apollo.BaseMutationOptions<
+    FavouriteButtonMakeNotFavouriteMutation,
+    FavouriteButtonMakeNotFavouriteMutationVariables
+  >;
 export const PokemonListFilterTypesDocument = gql`
   query PokemonListFilterTypes {
     pokemonTypes

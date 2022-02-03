@@ -3,4 +3,5 @@ fragment PokemonListItem on Pokemon {
   image
   name
   types
+  isFavorite
 }
