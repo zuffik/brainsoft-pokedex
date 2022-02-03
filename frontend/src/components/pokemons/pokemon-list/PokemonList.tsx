@@ -1,5 +1,5 @@
 import React from 'react';
-import { PokemonListItemFragment } from '../../../graphql';
+import { PokemonListItemFragment, PokemonListViewType } from '../../../graphql';
 import {
   PokemonListItem,
   PokemonListItemProps,
@@ -17,8 +17,8 @@ export const PokemonList: React.FC<PokemonListProps> =
     return (
       <div
         className={classNames(styles.root, {
-          [styles.list]: props.layout === 'list',
-          [styles.grid]: props.layout === 'grid',
+          [styles.list]: props.layout === PokemonListViewType.List,
+          [styles.grid]: props.layout === PokemonListViewType.Grid,
         })}
       >
         {props.items.map((item) => (
@@ -31,5 +31,5 @@ export const PokemonList: React.FC<PokemonListProps> =
 PokemonList.displayName = 'PokemonList';
 
 PokemonList.defaultProps = {
-  layout: 'grid',
+  layout: PokemonListViewType.Grid,
 };

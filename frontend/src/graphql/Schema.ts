@@ -108,6 +108,11 @@ export type PokemonFilterType = {
   type?: Maybe<Scalars['String']>;
 };
 
+export enum PokemonListViewType {
+  Grid = 'grid',
+  List = 'list',
+}
+
 export type PokemonsQueryInput = {
   filter?: InputMaybe<PokemonFilterInput>;
   limit?: InputMaybe<Scalars['Int']>;

@@ -78,6 +78,11 @@ type PokemonFilterType {
   type: String
 }
 
+enum PokemonListViewType {
+  grid
+  list
+}
+
 input PokemonsQueryInput {
   filter: PokemonFilterInput
   limit: Int = 10

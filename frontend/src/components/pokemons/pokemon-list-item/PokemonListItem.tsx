@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PokemonListItemFragment } from '../../../graphql';
+import { PokemonListItemFragment, PokemonListViewType } from '../../../graphql';
 import styles from './PokemonListItem.module.scss';
 import { routes } from '../../../defs/Routes';
 import { FavouriteButton } from '../../favourites/favourite-button/FavouriteButton';
@@ -8,15 +8,15 @@ import classNames from 'classnames';
 
 export interface PokemonListItemProps {
   item: PokemonListItemFragment;
-  layout?: 'list' | 'grid';
+  layout?: PokemonListViewType;
 }
 
 export const PokemonListItem = React.memo<PokemonListItemProps>((props) => {
   return (
     <div
       className={classNames(styles.root, {
-        [styles.list]: props.layout === 'list',
-        [styles.grid]: props.layout === 'grid',
+        [styles.list]: props.layout === PokemonListViewType.List,
+        [styles.grid]: props.layout === PokemonListViewType.Grid,
       })}
     >
       <Link

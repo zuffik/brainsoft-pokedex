@@ -13,6 +13,11 @@ type PokemonsQueryType {
   search: String
 }
 
+enum PokemonListViewType {
+  list
+  grid
+}
+
 extend type Query {
   pokemonQuery: PokemonsQueryType!
 }
