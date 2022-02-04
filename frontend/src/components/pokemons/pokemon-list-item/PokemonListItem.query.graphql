@@ -1,0 +1,5 @@
+query PokemonListItem($id: ID!) {
+  pokemonById(id: $id) {
+    ...PokemonListItem
+  }
+}

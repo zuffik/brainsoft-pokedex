@@ -1,0 +1,12 @@
+@import '~carbon-components/scss/globals/scss/vars';
+
+.column {
+  background-color: $field-01;
+  padding: $spacing-05;
+}
+
+.grid {
+  margin-bottom: $spacing-xl;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}

@@ -1,0 +1,14 @@
+fragment PokemonPreview on Pokemon {
+  id
+  ...PokemonListItem
+  maxCP
+  maxHP
+  weight {
+    minimum
+    maximum
+  }
+  height {
+    minimum
+    maximum
+  }
+}

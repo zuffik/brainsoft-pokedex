@@ -194,6 +194,13 @@ export type PokemonDetailQuery = {
     name: string;
     types: Array<string>;
     isFavorite: boolean;
+    evolutions: Array<{
+      __typename?: 'Pokemon';
+      id: string;
+      isFavorite: boolean;
+      name: string;
+      image: string;
+    }>;
     weight: {
       __typename?: 'PokemonDimension';
       minimum: string;
@@ -204,13 +211,6 @@ export type PokemonDetailQuery = {
       minimum: string;
       maximum: string;
     };
-    evolutions: Array<{
-      __typename?: 'Pokemon';
-      id: string;
-      isFavorite: boolean;
-      name: string;
-      image: string;
-    }>;
   } | null;
 };
 
@@ -224,8 +224,6 @@ export type PokemonFullFragment = {
   name: string;
   types: Array<string>;
   isFavorite: boolean;
-  weight: { __typename?: 'PokemonDimension'; minimum: string; maximum: string };
-  height: { __typename?: 'PokemonDimension'; minimum: string; maximum: string };
   evolutions: Array<{
     __typename?: 'Pokemon';
     id: string;
@@ -233,6 +231,49 @@ export type PokemonFullFragment = {
     name: string;
     image: string;
   }>;
+  weight: { __typename?: 'PokemonDimension'; minimum: string; maximum: string };
+  height: { __typename?: 'PokemonDimension'; minimum: string; maximum: string };
+};
+
+export type PokemonPreviewFragment = {
+  __typename?: 'Pokemon';
+  id: string;
+  maxCP: number;
+  maxHP: number;
+  image: string;
+  name: string;
+  types: Array<string>;
+  isFavorite: boolean;
+  weight: { __typename?: 'PokemonDimension'; minimum: string; maximum: string };
+  height: { __typename?: 'PokemonDimension'; minimum: string; maximum: string };
+};
+
+export type PokemonPreviewQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+export type PokemonPreviewQuery = {
+  __typename?: 'Query';
+  pokemonById?: {
+    __typename?: 'Pokemon';
+    id: string;
+    maxCP: number;
+    maxHP: number;
+    image: string;
+    name: string;
+    types: Array<string>;
+    isFavorite: boolean;
+    weight: {
+      __typename?: 'PokemonDimension';
+      minimum: string;
+      maximum: string;
+    };
+    height: {
+      __typename?: 'PokemonDimension';
+      minimum: string;
+      maximum: string;
+    };
+  } | null;
 };
 
 export type PokemonListFilterTypesQueryVariables = Exact<{
@@ -275,6 +316,22 @@ export type PokemonListItemFragment = {
   isFavorite: boolean;
 };
 
+export type PokemonListItemQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+export type PokemonListItemQuery = {
+  __typename?: 'Query';
+  pokemonById?: {
+    __typename?: 'Pokemon';
+    id: string;
+    image: string;
+    name: string;
+    types: Array<string>;
+    isFavorite: boolean;
+  } | null;
+};
+
 export const PokemonListItemFragmentDoc = gql`
   fragment PokemonListItem on Pokemon {
     id
@@ -284,11 +341,10 @@ export const PokemonListItemFragmentDoc = gql`
     isFavorite
   }
 `;
-export const PokemonFullFragmentDoc = gql`
-  fragment PokemonFull on Pokemon {
+export const PokemonPreviewFragmentDoc = gql`
+  fragment PokemonPreview on Pokemon {
     id
     ...PokemonListItem
-    sound
     maxCP
     maxHP
     weight {
@@ -299,6 +355,14 @@ export const PokemonFullFragmentDoc = gql`
       minimum
       maximum
     }
+  }
+  ${PokemonListItemFragmentDoc}
+`;
+export const PokemonFullFragmentDoc = gql`
+  fragment PokemonFull on Pokemon {
+    id
+    ...PokemonPreview
+    sound
     evolutions {
       id
       isFavorite
@@ -306,7 +370,7 @@ export const PokemonFullFragmentDoc = gql`
       image
     }
   }
-  ${PokemonListItemFragmentDoc}
+  ${PokemonPreviewFragmentDoc}
 `;
 export const FavouriteButtonIsFavouriteDocument = gql`
   query FavouriteButtonIsFavourite($id: ID!) {
@@ -530,6 +594,65 @@ export type PokemonDetailQueryResult = Apollo.QueryResult<
   PokemonDetailQuery,
   PokemonDetailQueryVariables
 >;
+export const PokemonPreviewDocument = gql`
+  query PokemonPreview($id: ID!) {
+    pokemonById(id: $id) {
+      ...PokemonPreview
+    }
+  }
+  ${PokemonPreviewFragmentDoc}
+`;
+
+/**
+ * __usePokemonPreviewQuery__
+ *
+ * To run a query within a React component, call `usePokemonPreviewQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePokemonPreviewQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePokemonPreviewQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function usePokemonPreviewQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    PokemonPreviewQuery,
+    PokemonPreviewQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<PokemonPreviewQuery, PokemonPreviewQueryVariables>(
+    PokemonPreviewDocument,
+    options
+  );
+}
+export function usePokemonPreviewLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    PokemonPreviewQuery,
+    PokemonPreviewQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<PokemonPreviewQuery, PokemonPreviewQueryVariables>(
+    PokemonPreviewDocument,
+    options
+  );
+}
+export type PokemonPreviewQueryHookResult = ReturnType<
+  typeof usePokemonPreviewQuery
+>;
+export type PokemonPreviewLazyQueryHookResult = ReturnType<
+  typeof usePokemonPreviewLazyQuery
+>;
+export type PokemonPreviewQueryResult = Apollo.QueryResult<
+  PokemonPreviewQuery,
+  PokemonPreviewQueryVariables
+>;
 export const PokemonListFilterTypesDocument = gql`
   query PokemonListFilterTypes {
     pokemonTypes
@@ -648,6 +771,65 @@ export type PokemonListFilterableLazyQueryHookResult = ReturnType<
 export type PokemonListFilterableQueryResult = Apollo.QueryResult<
   PokemonListFilterableQuery,
   PokemonListFilterableQueryVariables
+>;
+export const PokemonListItemDocument = gql`
+  query PokemonListItem($id: ID!) {
+    pokemonById(id: $id) {
+      ...PokemonListItem
+    }
+  }
+  ${PokemonListItemFragmentDoc}
+`;
+
+/**
+ * __usePokemonListItemQuery__
+ *
+ * To run a query within a React component, call `usePokemonListItemQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePokemonListItemQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePokemonListItemQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function usePokemonListItemQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    PokemonListItemQuery,
+    PokemonListItemQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<PokemonListItemQuery, PokemonListItemQueryVariables>(
+    PokemonListItemDocument,
+    options
+  );
+}
+export function usePokemonListItemLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    PokemonListItemQuery,
+    PokemonListItemQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    PokemonListItemQuery,
+    PokemonListItemQueryVariables
+  >(PokemonListItemDocument, options);
+}
+export type PokemonListItemQueryHookResult = ReturnType<
+  typeof usePokemonListItemQuery
+>;
+export type PokemonListItemLazyQueryHookResult = ReturnType<
+  typeof usePokemonListItemLazyQuery
+>;
+export type PokemonListItemQueryResult = Apollo.QueryResult<
+  PokemonListItemQuery,
+  PokemonListItemQueryVariables
 >;
 
 export interface PossibleTypesResultData {

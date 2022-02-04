@@ -13,6 +13,7 @@ import { Play20 } from '@carbon/icons-react';
 import { FavouriteButtonConnected } from '../../favourites';
 import { PokemonListItem } from '../../pokemons/pokemon-list-item/PokemonListItem';
 import { PokemonListWrapper } from '../../pokemons/pokemon-list-wrapper/PokemonListWrapper';
+import { PokemonDimensionTable } from '../pokemon-dimension-table/PokemonDimensionTable';
 
 export interface PokemonDetailProps {
   pokemon: PokemonFullFragment;
@@ -49,32 +50,7 @@ export const PokemonDetail: React.FC<PokemonDetailProps> =
           </div>
         </div>
         <div>
-          <Grid fullWidth className={styles.grid}>
-            <Row>
-              <Column sm={8} md={4} lg={3} className={styles.column}>
-                <h4>Max CP:</h4>
-                <span>{props.pokemon.maxCP}</span>
-              </Column>
-              <Column sm={8} md={4} lg={3} className={styles.column}>
-                <h4>Max HP:</h4>
-                <span>{props.pokemon.maxHP}</span>
-              </Column>
-              <Column sm={8} md={4} lg={3} className={styles.column}>
-                <h4>Weight:</h4>
-                <span>
-                  {props.pokemon.weight.minimum} -{' '}
-                  {props.pokemon.weight.maximum}
-                </span>
-              </Column>
-              <Column sm={8} md={4} lg={3} className={styles.column}>
-                <h4>Height:</h4>
-                <span>
-                  {props.pokemon.height.minimum} -{' '}
-                  {props.pokemon.height.maximum}
-                </span>
-              </Column>
-            </Row>
-          </Grid>
+          <PokemonDimensionTable pokemon={props.pokemon} />
         </div>
         <div>
           <h3>Evolutions</h3>

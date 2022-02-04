@@ -1,0 +1,5 @@
+query PokemonPreview($id: ID!) {
+  pokemonById(id: $id) {
+    ...PokemonPreview
+  }
+}

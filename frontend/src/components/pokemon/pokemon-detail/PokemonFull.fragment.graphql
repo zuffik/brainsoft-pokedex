@@ -1,17 +1,7 @@
 fragment PokemonFull on Pokemon {
   id
-  ...PokemonListItem
+  ...PokemonPreview
   sound
-  maxCP
-  maxHP
-  weight {
-    minimum
-    maximum
-  }
-  height {
-    minimum
-    maximum
-  }
   evolutions {
     id
     isFavorite

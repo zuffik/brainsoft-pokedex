@@ -1,10 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PokemonListItemFragment, PokemonListViewType } from '../../../graphql';
+import {
+  PokemonListItemFragment,
+  pokemonListView,
+  PokemonListViewType,
+  pokemonPreview,
+  usePokemonListItemQuery,
+} from '../../../graphql';
 import styles from './PokemonListItem.module.scss';
 import { routes } from '../../../defs/Routes';
 import { FavouriteButtonConnected } from '../../favourites';
 import classNames from 'classnames';
+import { Button } from 'carbon-components-react';
+import { ZoomIn24 } from '@carbon/icons-react';
+import { useReactiveVar } from '@apollo/client';
 
 type PokemonItem = Omit<PokemonListItemFragment, '__typename' | 'types'> &
   Partial<Pick<PokemonListItemFragment, 'types'>>;
@@ -12,6 +21,8 @@ type PokemonItem = Omit<PokemonListItemFragment, '__typename' | 'types'> &
 export interface PokemonListItemProps {
   item: PokemonItem;
   layout?: PokemonListViewType;
+  showPreviewButton?: boolean;
+  onShowPreview?: () => void;
 }
 
 export const PokemonListItem = React.memo<PokemonListItemProps>((props) => {
@@ -41,7 +52,19 @@ export const PokemonListItem = React.memo<PokemonListItemProps>((props) => {
           <span>{props.item.types?.join(', ')}</span>
         </Link>
         <div className={styles.actions}>
-          <FavouriteButtonConnected id={props.item.id} />
+          {props.showPreviewButton && (
+            <Button
+              hasIconOnly
+              renderIcon={ZoomIn24}
+              iconDescription="Preview"
+              kind="ghost"
+              size="sm"
+              onClick={props.onShowPreview}
+            />
+          )}
+          <div className={styles.favouriteButton}>
+            <FavouriteButtonConnected id={props.item.id} />
+          </div>
         </div>
       </div>
     </div>
@@ -49,3 +72,29 @@ export const PokemonListItem = React.memo<PokemonListItemProps>((props) => {
 });
 
 PokemonListItem.displayName = 'PokemonListItem';
+
+export interface PokemonListItemConnectedProps {
+  id: string;
+}
+
+export const PokemonListItemConnected: React.FC<
+  PokemonListItemConnectedProps
+> = (props) => {
+  const { data } = usePokemonListItemQuery({
+    variables: { id: props.id },
+    fetchPolicy: 'cache-only',
+  });
+  const layout = useReactiveVar(pokemonListView);
+  const handleShowPreview: PokemonListItemProps['onShowPreview'] =
+    React.useCallback(() => {
+      pokemonPreview(props.id);
+    }, [props.id]);
+  return (
+    <PokemonListItem
+      showPreviewButton
+      item={data?.pokemonById!}
+      layout={layout}
+      onShowPreview={handleShowPreview}
+    />
+  );
+};
