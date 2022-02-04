@@ -8,11 +8,10 @@ import { useParams } from 'react-router';
 import { App404 } from '../../page';
 import { RouteParams, routes } from '../../../defs/Routes';
 import styles from './PokemonDetail.module.scss';
-import { Button, Column, Grid, Row } from 'carbon-components-react';
+import { Button } from 'carbon-components-react';
 import { Play20 } from '@carbon/icons-react';
 import { FavouriteButtonConnected } from '../../favourites';
-import { PokemonListItem } from '../../pokemons/pokemon-list-item/PokemonListItem';
-import { PokemonListWrapper } from '../../pokemons/pokemon-list-wrapper/PokemonListWrapper';
+import { PokemonListItem, PokemonListWrapper } from '../../pokemons';
 import { PokemonDimensionTable } from '../pokemon-dimension-table/PokemonDimensionTable';
 
 export interface PokemonDetailProps {

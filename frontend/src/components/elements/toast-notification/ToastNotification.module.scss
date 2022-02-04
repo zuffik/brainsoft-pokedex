@@ -1,0 +1,15 @@
+$transition-duration: 300ms;
+
+.root {
+  position: absolute;
+  bottom: 20px;
+  transition: left $transition-duration, bottom 0.3s;
+  left: calc(-100% + -20px);
+  &.in {
+    left: 20px;
+  }
+}
+
+:export {
+  transitionDuration: $transition-duration;
+}

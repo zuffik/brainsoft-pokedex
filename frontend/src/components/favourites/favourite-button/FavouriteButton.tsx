@@ -7,6 +7,7 @@ import {
   useFavouriteButtonMakeFavouriteMutation,
   useFavouriteButtonMakeNotFavouriteMutation,
 } from '../../../graphql';
+import { useToastQueue } from '../../../contexts';
 
 export interface FavouriteButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -46,12 +47,21 @@ export const FavouriteButtonConnected: React.FC<
     variables: { id: props.id },
   });
   const isFavourite = !!data?.pokemonById?.isFavorite;
-  const handleClick = React.useCallback(() => {
+  const { enqueue } = useToastQueue();
+  const handleClick = React.useCallback(async () => {
     if (isFavourite) {
-      makeNotFavourite();
+      await makeNotFavourite();
+      enqueue({
+        title: 'Removed from favourites',
+        content: 'Pokemon was removed from',
+      });
     } else {
-      makeFavourite();
+      await makeFavourite();
+      enqueue({
+        title: 'Added to favourites',
+        content: 'Pokemon was added to favourites',
+      });
     }
-  }, [isFavourite, makeFavourite, makeNotFavourite]);
+  }, [enqueue, isFavourite, makeFavourite, makeNotFavourite]);
   return <FavouriteButton active={isFavourite} onClick={handleClick} />;
 };

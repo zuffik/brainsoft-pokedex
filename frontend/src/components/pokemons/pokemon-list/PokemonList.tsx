@@ -1,9 +1,6 @@
 import React from 'react';
 import { PokemonListItemFragment, PokemonListViewType } from '../../../graphql';
-import {
-  PokemonListItem,
-  PokemonListItemConnected,
-} from '../pokemon-list-item/PokemonListItem';
+import { PokemonListItemConnected } from '../pokemon-list-item/PokemonListItem';
 import {
   PokemonListWrapper,
   PokemonListWrapperProps,
