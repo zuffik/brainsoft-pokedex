@@ -102,12 +102,6 @@ export type PokemonFilterInput = {
   type?: InputMaybe<Scalars['String']>;
 };
 
-export type PokemonFilterType = {
-  __typename?: 'PokemonFilterType';
-  isFavorite?: Maybe<Scalars['Boolean']>;
-  type?: Maybe<Scalars['String']>;
-};
-
 export enum PokemonListViewType {
   Grid = 'grid',
   List = 'list',
@@ -120,19 +114,10 @@ export type PokemonsQueryInput = {
   search?: InputMaybe<Scalars['String']>;
 };
 
-export type PokemonsQueryType = {
-  __typename?: 'PokemonsQueryType';
-  filter?: Maybe<PokemonFilterType>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  search?: Maybe<Scalars['String']>;
-};
-
 export type Query = {
   __typename?: 'Query';
   pokemonById?: Maybe<Pokemon>;
   pokemonByName?: Maybe<Pokemon>;
-  pokemonQuery: PokemonsQueryType;
   pokemonTypes: Array<Scalars['String']>;
   pokemons: PokemonConnection;
 };
@@ -259,18 +244,6 @@ export type PokemonListFilterTypesQuery = {
   pokemonTypes: Array<string>;
 };
 
-export type PokemonListFilterFragment = {
-  __typename?: 'PokemonsQueryType';
-  limit?: number | null;
-  offset?: number | null;
-  search?: string | null;
-  filter?: {
-    __typename?: 'PokemonFilterType';
-    isFavorite?: boolean | null;
-    type?: string | null;
-  } | null;
-};
-
 export type PokemonListFilterableQueryVariables = Exact<{
   query: PokemonsQueryInput;
 }>;
@@ -334,17 +307,6 @@ export const PokemonFullFragmentDoc = gql`
     }
   }
   ${PokemonListItemFragmentDoc}
-`;
-export const PokemonListFilterFragmentDoc = gql`
-  fragment PokemonListFilter on PokemonsQueryType {
-    filter {
-      isFavorite
-      type
-    }
-    limit
-    offset
-    search
-  }
 `;
 export const FavouriteButtonIsFavouriteDocument = gql`
   query FavouriteButtonIsFavourite($id: ID!) {

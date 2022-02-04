@@ -35,10 +35,7 @@ export const PokemonListFilterableConnected: React.FC<
 > = (props) => {
   const query = useReactiveVar(pokemonQuery);
   const layout = useReactiveVar(pokemonListView);
-  const { data } = usePokemonListFilterableQuery({
-    variables: { query },
-    fetchPolicy: 'cache-and-network',
-  });
+  const { data } = usePokemonListFilterableQuery({ variables: { query } });
   return (
     <PokemonListFilterable
       items={data?.pokemons?.edges || []}

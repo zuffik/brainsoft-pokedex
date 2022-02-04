@@ -73,11 +73,6 @@ input PokemonFilterInput {
   type: String
 }
 
-type PokemonFilterType {
-  isFavorite: Boolean
-  type: String
-}
-
 enum PokemonListViewType {
   grid
   list
@@ -90,17 +85,9 @@ input PokemonsQueryInput {
   search: String
 }
 
-type PokemonsQueryType {
-  filter: PokemonFilterType
-  limit: Int
-  offset: Int
-  search: String
-}
-
 type Query {
   pokemonById(id: ID!): Pokemon
   pokemonByName(name: String!): Pokemon
-  pokemonQuery: PokemonsQueryType!
   pokemonTypes: [String!]!
   pokemons(query: PokemonsQueryInput!): PokemonConnection!
 }

@@ -47,6 +47,7 @@ export const PokemonListFilterTypeConnected: React.FC<
     React.useCallback((type) => {
       pokemonQuery(
         update(pokemonQuery(), {
+          offset: { $set: 0 },
           filter: (f) =>
             update(f || {}, {
               type: { $set: type },

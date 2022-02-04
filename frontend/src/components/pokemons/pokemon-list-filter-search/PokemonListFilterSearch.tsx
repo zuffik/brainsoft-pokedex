@@ -52,6 +52,7 @@ export const PokemonListFilterSearchConnected: React.FC<
     React.useCallback((search) => {
       pokemonQuery(
         update(pokemonQuery(), {
+          offset: { $set: 0 },
           search: { $set: search },
         })
       );

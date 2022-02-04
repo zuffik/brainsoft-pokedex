@@ -1,3 +1,3 @@
-import { PokemonDetailConnected as PokemonDetail } from '../../../pokemons';
+import { PokemonDetailConnected as PokemonDetail } from '../../../pokemon';
 
 export default PokemonDetail;

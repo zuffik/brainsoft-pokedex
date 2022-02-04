@@ -11,8 +11,8 @@ import styles from './PokemonDetail.module.scss';
 import { Button, Column, Grid, Row } from 'carbon-components-react';
 import { Play20 } from '@carbon/icons-react';
 import { FavouriteButtonConnected } from '../../favourites';
-import { PokemonListItem } from '../pokemon-list-item/PokemonListItem';
-import { PokemonListWrapper } from '../pokemon-list-wrapper/PokemonListWrapper';
+import { PokemonListItem } from '../../pokemons/pokemon-list-item/PokemonListItem';
+import { PokemonListWrapper } from '../../pokemons/pokemon-list-wrapper/PokemonListWrapper';
 
 export interface PokemonDetailProps {
   pokemon: PokemonFullFragment;

@@ -1,6 +1,5 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { pokemonFields, possibleTypes } from './index';
-import { pokemonsQueryFields } from './state/PokemonQueries';
 
 const createApolloClient = () =>
   new ApolloClient({
@@ -10,7 +9,6 @@ const createApolloClient = () =>
       typePolicies: {
         Query: {
           fields: {
-            ...pokemonsQueryFields,
             ...pokemonFields,
           },
         },

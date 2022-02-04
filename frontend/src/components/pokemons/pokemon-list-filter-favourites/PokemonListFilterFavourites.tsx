@@ -44,6 +44,7 @@ export const PokemonListFilterFavouritesConnected: React.FC<
     React.useCallback((data) => {
       pokemonQuery(
         update(pokemonQuery(), {
+          offset: { $set: 0 },
           filter: (f) =>
             update(f || {}, {
               ...(data.name === 'all'

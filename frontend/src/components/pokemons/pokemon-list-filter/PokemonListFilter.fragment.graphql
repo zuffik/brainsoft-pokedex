@@ -1,9 +1,0 @@
-fragment PokemonListFilter on PokemonsQueryType {
-  filter {
-    isFavorite
-    type
-  }
-  limit
-  offset
-  search
-}
