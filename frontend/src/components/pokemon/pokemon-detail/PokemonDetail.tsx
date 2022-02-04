@@ -78,7 +78,7 @@ export const PokemonDetail: React.FC<PokemonDetailProps> =
         </div>
         <div>
           <h3>Evolutions</h3>
-          <PokemonListWrapper layout={PokemonListViewType.Grid} stackAtStart>
+          <PokemonListWrapper layout={PokemonListViewType.Grid}>
             {props.pokemon.evolutions.map((pokemon) => (
               <PokemonListItem
                 item={pokemon}

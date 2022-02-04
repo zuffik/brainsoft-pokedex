@@ -6,7 +6,6 @@ import { PokemonListItemProps } from '../pokemon-list-item/PokemonListItem';
 
 export interface PokemonListWrapperProps {
   layout?: PokemonListItemProps['layout'];
-  stackAtStart?: boolean;
 }
 
 export const PokemonListWrapper: React.FC<PokemonListWrapperProps> =
@@ -16,7 +15,6 @@ export const PokemonListWrapper: React.FC<PokemonListWrapperProps> =
         className={classNames(styles.root, {
           [styles.list]: props.layout === PokemonListViewType.List,
           [styles.grid]: props.layout === PokemonListViewType.Grid,
-          [styles.stackAtStart]: props.stackAtStart,
         })}
       >
         {props.children}

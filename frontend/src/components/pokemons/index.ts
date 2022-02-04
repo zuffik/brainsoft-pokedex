@@ -6,4 +6,5 @@ export * from './pokemon-list-filter-type/PokemonListFilterType';
 export * from './pokemon-list-filter-view-mode/PokemonListFilterViewMode';
 export * from './pokemon-list-filterable/PokemonListFilterable';
 export * from './pokemon-list-item/PokemonListItem';
+export * from './pokemon-list-pagination/PokemonListPagination';
 export * from './pokemon-list-wrapper/PokemonListWrapper';

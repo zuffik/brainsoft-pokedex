@@ -9,6 +9,7 @@ import {
 } from '../../../graphql';
 import { useReactiveVar } from '@apollo/client';
 import { PokemonListItemProps } from '../pokemon-list-item/PokemonListItem';
+import { PokemonListPaginationConnected } from '../pokemon-list-pagination/PokemonListPagination';
 
 export interface PokemonListFilterableProps {
   items: PokemonListItemFragment[];
@@ -21,6 +22,7 @@ export const PokemonListFilterable = React.memo<PokemonListFilterableProps>(
       <>
         <PokemonListFilter />
         <PokemonList items={props.items} layout={props.layout} />
+        <PokemonListPaginationConnected />
       </>
     );
   }
