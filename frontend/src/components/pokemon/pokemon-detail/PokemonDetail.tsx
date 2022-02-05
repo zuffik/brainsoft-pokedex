@@ -7,12 +7,12 @@ import {
 import { useParams } from 'react-router';
 import { App404 } from '../../page';
 import { RouteParams, routes } from '../../../defs/Routes';
-import styles from './PokemonDetail.module.scss';
 import { Button } from 'carbon-components-react';
 import { Play20 } from '@carbon/icons-react';
 import { FavouriteButtonConnected } from '../../favourites';
 import { PokemonListItem, PokemonListWrapper } from '../../pokemons';
 import { PokemonDimensionTable } from '../pokemon-dimension-table/PokemonDimensionTable';
+import { PokemonDetailLayout } from '../pokemon-detail-layout/PokemonDetailLayout';
 
 export interface PokemonDetailProps {
   pokemon: PokemonFullFragment;
@@ -28,15 +28,11 @@ export const PokemonDetail: React.FC<PokemonDetailProps> =
       audio.play();
     }, [audio]);
     return (
-      <div className={styles.root}>
-        <img
-          src={props.pokemon.image}
-          alt={props.pokemon.name}
-          className={styles.image}
-        />
-        <div className={styles.main}>
-          <h2>{props.pokemon.name}</h2>
-          <div className={styles.actions}>
+      <PokemonDetailLayout
+        topContent={<img src={props.pokemon.image} alt={props.pokemon.name} />}
+        mainContent={<h2>{props.pokemon.name}</h2>}
+        actionsContent={
+          <>
             <FavouriteButtonConnected id={props.pokemon.id} />
             <Button
               hasIconOnly
@@ -46,27 +42,27 @@ export const PokemonDetail: React.FC<PokemonDetailProps> =
               tooltipPosition="left"
               onClick={handlePlaySound}
             />
-          </div>
-        </div>
-        <div>
-          <PokemonDimensionTable pokemon={props.pokemon} />
-        </div>
-        <div>
-          <h3>Evolutions</h3>
-          <PokemonListWrapper layout={PokemonListViewType.Grid}>
-            {props.pokemon.evolutions.map((pokemon) => (
-              <PokemonListItem
-                item={pokemon}
-                key={pokemon.id}
-                layout={PokemonListViewType.Grid}
-              />
-            ))}
-            {props.pokemon.evolutions.length === 0 && (
-              <strong>No evolutions</strong>
-            )}
-          </PokemonListWrapper>
-        </div>
-      </div>
+          </>
+        }
+        detailInfoContent={<PokemonDimensionTable pokemon={props.pokemon} />}
+        bottomContent={
+          <>
+            <h3>Evolutions</h3>
+            <PokemonListWrapper layout={PokemonListViewType.Grid}>
+              {props.pokemon.evolutions.map((pokemon) => (
+                <PokemonListItem
+                  item={pokemon}
+                  key={pokemon.id}
+                  layout={PokemonListViewType.Grid}
+                />
+              ))}
+              {props.pokemon.evolutions.length === 0 && (
+                <strong>No evolutions</strong>
+              )}
+            </PokemonListWrapper>
+          </>
+        }
+      />
     );
   });
 

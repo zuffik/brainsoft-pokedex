@@ -1,42 +1,21 @@
 import React from 'react';
-import { Column, Grid, Row } from 'carbon-components-react';
 import { PokemonListFilterSearchConnected } from '../pokemon-list-filter-search/PokemonListFilterSearch';
 import { PokemonListFilterTypeConnected } from '../pokemon-list-filter-type/PokemonListFilterType';
 import { GridDefaultProps } from 'carbon-components-react/lib/components/Grid/Grid';
-import classNames from 'classnames';
-import styles from './PokemonListFilter.module.scss';
 import { PokemonListFilterViewModeConnected } from '../pokemon-list-filter-view-mode/PokemonListFilterViewMode';
 import { PokemonListFilterFavouritesConnected } from '../pokemon-list-filter-favourites/PokemonListFilterFavourites';
+import { PokemonListFilterWrapper } from '../pokemon-list-filter-wrapper/PokemonListFilterWrapper';
 
 export interface PokemonListFilterProps extends GridDefaultProps {}
 
 export const PokemonListFilter = React.memo<PokemonListFilterProps>((props) => {
   return (
-    <>
-      <Grid
-        fullWidth
-        narrow
-        {...props}
-        className={classNames(props.className, styles.root)}
-      >
-        <Row className={styles.firstRow}>
-          <Column>
-            <PokemonListFilterFavouritesConnected />
-          </Column>
-        </Row>
-        <Row>
-          <Column sm={8} md={4} lg={4}>
-            <PokemonListFilterSearchConnected />
-          </Column>
-          <Column sm={4} md={4} lg={6}>
-            <PokemonListFilterTypeConnected />
-          </Column>
-          <Column sm={2} md={2} lg={2} className={styles.lastCol}>
-            <PokemonListFilterViewModeConnected />
-          </Column>
-        </Row>
-      </Grid>
-    </>
+    <PokemonListFilterWrapper
+      topRow={<PokemonListFilterFavouritesConnected />}
+      bottomLeft={<PokemonListFilterSearchConnected />}
+      bottomMiddle={<PokemonListFilterTypeConnected />}
+      bottomRight={<PokemonListFilterViewModeConnected />}
+    />
   );
 });
 

@@ -1,19 +1,6 @@
 @import '~carbon-components/scss/globals/scss/vars';
 @import '~carbon-components/scss/globals/scss/typography';
 
-.root {
-  background-color: $field-01;
-  border: 1px solid $active-secondary;
-  margin: $spacing-03;
-  display: flex;
-  &.list {
-    flex-direction: row;
-  }
-  &.grid {
-    flex-direction: column;
-  }
-}
-
 .info {
   display: flex;
   flex-direction: row;
