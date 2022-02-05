@@ -3,36 +3,33 @@ import { Link } from 'react-router-dom';
 import {
   PokemonListItemFragment,
   pokemonListView,
-  PokemonListViewType,
   pokemonPreview,
   usePokemonListItemQuery,
 } from '../../../graphql';
 import styles from './PokemonListItem.module.scss';
 import { routes } from '../../../defs/Routes';
 import { FavouriteButtonConnected } from '../../favourites';
-import classNames from 'classnames';
 import { Button } from 'carbon-components-react';
 import { ZoomIn24 } from '@carbon/icons-react';
 import { useReactiveVar } from '@apollo/client';
+import {
+  PokemonListItemWrapper,
+  PokemonListItemWrapperProps,
+} from '../pokemon-list-item-wraper/PokemonListItemWrapper';
 
 type PokemonItem = Omit<PokemonListItemFragment, '__typename' | 'types'> &
   Partial<Pick<PokemonListItemFragment, 'types'>>;
 
 export interface PokemonListItemProps {
   item: PokemonItem;
-  layout?: PokemonListViewType;
+  layout?: PokemonListItemWrapperProps['layout'];
   showPreviewButton?: boolean;
   onShowPreview?: () => void;
 }
 
 export const PokemonListItem = React.memo<PokemonListItemProps>((props) => {
   return (
-    <div
-      className={classNames(styles.root, {
-        [styles.list]: props.layout === PokemonListViewType.List,
-        [styles.grid]: props.layout === PokemonListViewType.Grid,
-      })}
-    >
+    <PokemonListItemWrapper layout={props.layout}>
       <Link
         to={routes.pokemonDetail.generate({ name: props.item.name })}
         className={styles.imageLink}
@@ -67,7 +64,7 @@ export const PokemonListItem = React.memo<PokemonListItemProps>((props) => {
           </div>
         </div>
       </div>
-    </div>
+    </PokemonListItemWrapper>
   );
 });
 
