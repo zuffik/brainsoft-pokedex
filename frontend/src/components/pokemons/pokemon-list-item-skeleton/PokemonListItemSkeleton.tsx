@@ -1,6 +1,10 @@
 import React from 'react';
-import { PokemonListItemWrapperProps } from '../pokemon-list-item-wraper/PokemonListItemWrapper';
-import { PokemonListWrapper } from '../pokemon-list-wrapper/PokemonListWrapper';
+import {
+  PokemonListItemWrapper,
+  PokemonListItemWrapperProps,
+} from '../pokemon-list-item-wraper/PokemonListItemWrapper';
+import { SkeletonPlaceholder } from 'carbon-components-react';
+import styles from './PokemonListItemSkeleton.module.scss';
 
 export interface PokemonListItemSkeletonProps {
   layout?: PokemonListItemWrapperProps['layout'];
@@ -8,7 +12,14 @@ export interface PokemonListItemSkeletonProps {
 
 export const PokemonListItemSkeleton: React.FC<PokemonListItemSkeletonProps> =
   React.memo<PokemonListItemSkeletonProps>((props) => {
-    return <PokemonListWrapper />;
+    return (
+      <PokemonListItemWrapper layout={props.layout}>
+        <div className={styles.placeholder}>
+          <SkeletonPlaceholder />
+        </div>
+        <SkeletonPlaceholder className={styles.info} />
+      </PokemonListItemWrapper>
+    );
   });
 
 PokemonListItemSkeleton.displayName = 'PokemonListItemSkeleton';

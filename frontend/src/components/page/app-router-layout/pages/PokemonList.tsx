@@ -1,3 +1,3 @@
-import { PokemonListFilterableConnected as PokemonList } from '../../../pokemons';
+import { PokemonListFilterableConnected as PokemonList } from '../../../pokemons/pokemon-list-filterable/PokemonListFilterable';
 
 export default PokemonList;

@@ -1,0 +1,14 @@
+@import '~carbon-components/scss/globals/scss/vars';
+
+.skeleton {
+  height: $spacing-3xl !important;
+}
+
+.topSkeleton {
+  height: 40px !important;
+}
+
+.bottomSkeleton {
+  margin-top: 24px;
+  margin-bottom: 32px;
+}

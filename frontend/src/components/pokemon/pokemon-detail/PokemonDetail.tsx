@@ -5,14 +5,15 @@ import {
   usePokemonDetailQuery,
 } from '../../../graphql';
 import { useParams } from 'react-router';
-import { App404 } from '../../page';
 import { RouteParams, routes } from '../../../defs/Routes';
 import { Button } from 'carbon-components-react';
 import { Play20 } from '@carbon/icons-react';
-import { FavouriteButtonConnected } from '../../favourites';
-import { PokemonListItem, PokemonListWrapper } from '../../pokemons';
 import { PokemonDimensionTable } from '../pokemon-dimension-table/PokemonDimensionTable';
 import { PokemonDetailLayout } from '../pokemon-detail-layout/PokemonDetailLayout';
+import { App404 } from '../../page/app-404/App404';
+import { FavouriteButtonConnected } from '../../favourites/favourite-button/FavouriteButton';
+import { PokemonListWrapper } from '../../pokemons/pokemon-list-wrapper/PokemonListWrapper';
+import { PokemonListItem } from '../../pokemons/pokemon-list-item/PokemonListItem';
 
 export interface PokemonDetailProps {
   pokemon: PokemonFullFragment;

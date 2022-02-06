@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './AppHeader.module.scss';
-import { Logo } from '../../elements';
 import { Link } from 'react-router-dom';
 import { routes } from '../../../defs/Routes';
+import { Logo } from '../../elements/logo/Logo';
 
 export interface AppHeaderProps {}
 

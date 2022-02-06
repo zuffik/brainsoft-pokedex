@@ -2,6 +2,7 @@ import React from 'react';
 import { AppHeader } from '../app-header/AppHeader';
 import { Route, Routes } from 'react-router';
 import { routes } from '../../../defs/Routes';
+import { PokemonListSuspense } from '../../pokemons/pokemon-list-suspense/PokemonListSuspense';
 
 const PokemonList = React.lazy(() => import('./pages/PokemonList'));
 const PokemonDetail = React.lazy(() => import('./pages/PokemonDetail'));
@@ -16,7 +17,7 @@ export const AppRouterLayout = React.memo<AppRouterLayoutProps>((props) => {
         <Route
           path={routes.root.path}
           element={
-            <React.Suspense fallback={null}>
+            <React.Suspense fallback={<PokemonListSuspense />}>
               <PokemonList />
             </React.Suspense>
           }

@@ -1,5 +1,10 @@
 import React from 'react';
-import { Select, SelectItem, SelectProps } from 'carbon-components-react';
+import {
+  Select,
+  SelectItem,
+  SelectProps,
+  TextInputSkeleton,
+} from 'carbon-components-react';
 import { pokemonQuery, usePokemonListFilterTypesQuery } from '../../../graphql';
 import { useReactiveVar } from '@apollo/client';
 import update from 'immutability-helper';
@@ -41,7 +46,7 @@ export interface PokemonListFilterTypeConnectedProps {}
 export const PokemonListFilterTypeConnected: React.FC<
   PokemonListFilterTypeConnectedProps
 > = (props) => {
-  const { data } = usePokemonListFilterTypesQuery();
+  const { data, loading } = usePokemonListFilterTypesQuery();
   const selected = useReactiveVar(pokemonQuery).filter?.type || undefined;
   const handleChange: PokemonListFilterTypeProps['onChange'] =
     React.useCallback((type) => {
@@ -55,6 +60,9 @@ export const PokemonListFilterTypeConnected: React.FC<
         })
       );
     }, []);
+  if (loading) {
+    return <TextInputSkeleton />;
+  }
   return (
     <PokemonListFilterType
       types={data?.pokemonTypes || []}

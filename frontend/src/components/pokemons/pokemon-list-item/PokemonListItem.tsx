@@ -8,7 +8,6 @@ import {
 } from '../../../graphql';
 import styles from './PokemonListItem.module.scss';
 import { routes } from '../../../defs/Routes';
-import { FavouriteButtonConnected } from '../../favourites';
 import { Button } from 'carbon-components-react';
 import { ZoomIn24 } from '@carbon/icons-react';
 import { useReactiveVar } from '@apollo/client';
@@ -16,6 +15,7 @@ import {
   PokemonListItemWrapper,
   PokemonListItemWrapperProps,
 } from '../pokemon-list-item-wraper/PokemonListItemWrapper';
+import { FavouriteButtonConnected } from '../../favourites/favourite-button/FavouriteButton';
 
 type PokemonItem = Omit<PokemonListItemFragment, '__typename' | 'types'> &
   Partial<Pick<PokemonListItemFragment, 'types'>>;

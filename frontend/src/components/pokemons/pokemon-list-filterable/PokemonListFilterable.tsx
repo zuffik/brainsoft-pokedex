@@ -10,7 +10,8 @@ import {
 import { useReactiveVar } from '@apollo/client';
 import { PokemonListItemProps } from '../pokemon-list-item/PokemonListItem';
 import { PokemonListPaginationConnected } from '../pokemon-list-pagination/PokemonListPagination';
-import { PokemonPreviewConnected } from '../../pokemon';
+import { PokemonPreviewConnected } from '../../pokemon/pokemon-preview/PokemonPreview';
+import { PokemonListSuspense } from '../pokemon-list-suspense/PokemonListSuspense';
 
 export interface PokemonListFilterableProps {
   items: PokemonListItemFragment[];
@@ -39,7 +40,12 @@ export const PokemonListFilterableConnected: React.FC<
 > = (props) => {
   const query = useReactiveVar(pokemonQuery);
   const layout = useReactiveVar(pokemonListView);
-  const { data } = usePokemonListFilterableQuery({ variables: { query } });
+  const { data, loading } = usePokemonListFilterableQuery({
+    variables: { query },
+  });
+  if (loading && !data?.pokemons) {
+    return <PokemonListSuspense />;
+  }
   return (
     <PokemonListFilterable
       items={data?.pokemons?.edges || []}
